@@ -4,6 +4,7 @@ import Shop from "./Shop";
 import Navbar from "./components/Navbar";
 import About from "./About";
 import Contacts from "./Contacts";
+import { useState } from "react";
 
 const RouteSwitch = () => {
   return (

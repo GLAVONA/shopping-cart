@@ -12,13 +12,16 @@
     
 }
 
-img{
-    width: 100%;
-    display: block;
-}
-
 .main-img{
     display: flex;
     height: 100%;
     overflow: hidden;
+}
+
+.main-img>img{
+    width: 100%;
+}
+
+.about-container{
+    margin: 10rem 20rem 0 20rem;
 }
