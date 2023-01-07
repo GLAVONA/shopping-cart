@@ -1,25 +1,38 @@
-.navbar{
-    background-color: lightcoral;
+.navbar {
+  background-color: lightcoral;
 }
 
-.navbar-items{
-    display: flex;
-    height: 100px;
-    justify-content: center;
-    align-items: center;
-    gap: 300px;
+.navbar-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 300px;
 }
 
-
-.navmenu{
-    display: flex;
-    list-style: none;
-    gap: 3rem;
-    font-size: 20px;
-    font-weight: 400;
-}
-
-a{
+h1>a{
     text-decoration: none;
     color: inherit;
+}
+
+.navmenu {
+  display: flex;
+  list-style: none;
+  gap: 3rem;
+  font-size: 20px;
+  font-weight: 400;
+}
+li {
+  align-items: center;
+  justify-content: center;
+}
+
+.navmenu > li > a {
+  text-decoration: none;
+  color: inherit;
+  padding: 0.5rem;
+  border: 1px solid transparent;
+}
+
+.navmenu >li>.active {
+  border: 1px solid black;
 }
