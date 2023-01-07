@@ -1,3 +1,25 @@
 .navbar{
     background-color: lightcoral;
 }
+
+.navbar-items{
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    gap: 300px;
+}
+
+
+.navmenu{
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+    font-size: 20px;
+    font-weight: bold
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
