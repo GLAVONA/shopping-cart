@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
+import plusImage from "../imgs/add.png";
 
-const ShoppingItem = ({ src, id}) => {
+const ShoppingItem = ({ src, id,onClick }) => {
+  const [showAddToCart, setShowAddToCard] = useState(false);
+
   return (
     <div className="shopping-item">
-      <img src={src} alt="" id={id} />
+      {showAddToCart ? (
+        <div className="add-to-cart" id={id} onMouseEnter={() => setShowAddToCard(true)}
+        onMouseLeave={()=>setShowAddToCard(false)} onClick={onClick}>
+          <img src={plusImage} alt="" />
+        </div>
+      ) : null}
+
+      <img
+        src={src}
+        alt=""
+        id={id}
+        onMouseEnter={() => setShowAddToCard(true)}
+        onMouseLeave={()=>setShowAddToCard(false)}
+      />
     </div>
   );
 };

@@ -11,9 +11,12 @@ const Shop = () => {
   const apiKey = "RNyGfTjzayaxSod2C541TnAJFKyajbSH";
   const limit = 20;
 
+  const getClickedId = (e) => {
+    console.log(e.target.id);
+  };
+
   useEffect(() => {
     const getGifs = async () => {
-
       try {
         const response = await fetch(
           `https://api.giphy.com/v1/gifs/trending?api_key=${apiKey}&limit=${limit}`,
@@ -29,10 +32,16 @@ const Shop = () => {
   }, []);
   return (
     <div className="shop">
-    <button onClick={console.log(trendingGifs)}>PRINT</button>
+      <button onClick={console.log(trendingGifs)}>PRINT</button>
       <div className="shopping">
         {trendingGifs.map((gif) => {
-          return <ShoppingItem src={gif.images.fixed_height.url} id={gif.id} />;
+          return (
+            <ShoppingItem
+              src={gif.images.fixed_height.url}
+              id={gif.id}
+              onClick={getClickedId}
+            />
+          );
         })}
       </div>
       {cartBarVisible ? <Cart /> : null}

@@ -9,9 +9,9 @@
   gap: 300px;
 }
 
-h1>a{
-    text-decoration: none;
-    color: inherit;
+h1 > a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .navmenu {
@@ -21,6 +21,7 @@ h1>a{
   font-size: 20px;
   font-weight: 400;
 }
+
 li {
   align-items: center;
   justify-content: center;
@@ -33,6 +34,6 @@ li {
   border: 1px solid transparent;
 }
 
-.navmenu >li>.active {
+.navmenu > li > .active {
   border: 1px solid black;
 }
