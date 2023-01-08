@@ -17,12 +17,19 @@ h1 > a {
 ul{
 }
 
-.navmenu {
+.navmenu{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navmenu>ul {
   display: flex;
   list-style: none;
   gap: 3rem;
   font-size: 20px;
   font-weight: 400;
+  position: relative;
 }
 
 li {
@@ -30,14 +37,14 @@ li {
   justify-content: center;
 }
 
-.navmenu > li > a {
+.navmenu > ul>li > a {
   text-decoration: none;
   color: inherit;
   padding: 0.5rem;
   border: 1px solid transparent;
 }
 
-.navmenu > li > .active {
+.navmenu >ul> li > .active {
   border: 1px solid black;
 }
 
@@ -64,3 +71,10 @@ li {
   pointer-events: none;
   font-size: 16px;
 }
+
+.shopping-wrapper{
+  width: 35px;
+  height: 35px;
+  margin-left: 3vw;
+}
+

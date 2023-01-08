@@ -13,27 +13,31 @@ const Navbar = ({cartItemsLength,openCart}) => {
         <h1>
           <NavLink to="/">NFT Shop</NavLink>
         </h1>
-        <ul className="navmenu">
-          <li>
-            <NavLink to="../shop">Shop</NavLink>
-          </li>
-          <li>
-            <NavLink to="../about">About</NavLink>
-          </li>
-          <li>
-            <NavLink to="../contacts">Contacts</NavLink>
-          </li>
-          
-          {cartItemsLength!==undefined?
+        <div className="navmenu">
+          <ul>
             <li>
-            <div className="shopping-cart-open" onClick={openCart}>
-              <div className="item-count">{cartItemsLength}</div>
-              <img src={shoppingCartImage} alt="" id="shopping-cart-image" />
-            </div>
-          </li> :null
-          }
-          
-        </ul>
+              <NavLink to="../shop">Shop</NavLink>
+            </li>
+            <li>
+              <NavLink to="../about">About</NavLink>
+            </li>
+            <li>
+              <NavLink to="../contacts">Contacts</NavLink>
+            </li>
+          </ul>
+                            
+         <div className="shopping-wrapper">
+          {cartItemsLength!==undefined?
+         
+           <div className="shopping-cart-open" onClick={openCart}>
+             <div className="item-count">{cartItemsLength}</div>
+             <img src={shoppingCartImage} alt="" id="shopping-cart-image" />
+           </div>
+       :null
+       }
+         </div>
+        </div>
+
       </div>
     </div>
   );
