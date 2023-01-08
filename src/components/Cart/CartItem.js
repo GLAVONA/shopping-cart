@@ -7,7 +7,7 @@ const CartItem = ({ price, id, title, smallurl, quantity, changeQuantity, remove
       <img src={smallurl} alt="" id={id} title={title} />
       <div className="title-and-quantity">
         <div className="shop-item-title">{title}</div>
-        <div className="shop-item-price">{price}</div>
+        <div className="shop-item-price">Price: {price}</div>
         <div className="qty">
             <label htmlFor="quantity">Qty:</label>
             <input

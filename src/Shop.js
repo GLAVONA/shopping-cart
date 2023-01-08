@@ -30,6 +30,7 @@ const Shop = () => {
           smallurl: e.target.getAttribute("smallurl"),
           title: e.target.getAttribute("title"),
           quantity: 1,
+          price:e.target.getAttribute("price")
         },
       ];
       setCartItems(newArr);

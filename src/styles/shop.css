@@ -98,7 +98,7 @@
 }
 
 .qty{
-  display: grid;
+  display: flex;
 }
 
 .qty-input{
@@ -107,4 +107,8 @@
 
 .item-price{
   text-align: center;
+}
+
+.cart-total{
+  align-self: center;
 }
