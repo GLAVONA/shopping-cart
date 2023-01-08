@@ -34,7 +34,7 @@ const Cart = ({
             );
           })}
         </div>
-        <div className="cart-total">Total ETH: {total}</div>
+        <div className="cart-total">Total ETH: {total.toFixed(2)}</div>
       </div>
     </div>
   );
