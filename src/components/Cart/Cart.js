@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import CartItem from "./CartItem";
 
-const Cart = ({ cartItems }) => {
+const Cart = ({ cartItems, changeQuantity }) => {
   console.log(cartItems)
   return <div className="shopping-cart">
-    {cartItems.map(item=>{
-      <CartItem id={item.id} title={item.title} smallURL={item.smallURL} />
+    <button className="close-shopping-cart">X</button>
+
+    {cartItems.map(item=>{return(
+      <CartItem id={item.id} title={item.title} smallURL={item.smallURL} quantity={item.quantity} changeQuantity={changeQuantity}/>
+    )
     })}
   </div>;
 };

@@ -13,11 +13,31 @@ const Shop = () => {
   const limit = 20;
 
   const addToCart = (e) => {
-    console.log(e.target.getAttribute("smallURL"))
-    const newArr = [...cartItems, {id:e.target.id,smallURL:e.target.getAttribute("smallURL"),title:e.target.getAttribute("title")}];
-    setCartItems(newArr);
-    console.log(trendingGifs)
+    if(cartItems.some(item=>item.id===e.target.id))
+    {
+      const index = cartItems.findIndex(item=>item.id===e.target.id);
+      const newArr =[...cartItems]
+      const newItem = cartItems[index];
+      newItem.quantity++;
+      newArr[index]=newItem;
+      setCartItems(newArr);
+    }
+    else{
+
+      const newArr = [...cartItems, {id:e.target.id,smallURL:e.target.getAttribute("smallURL"),title:e.target.getAttribute("title"), quantity:1}];
+      setCartItems(newArr);
+    }
+;
   };
+
+  const handleQuantityChange=(e)=>{
+    const index = cartItems.findIndex(item=>item.id===e.target.id);
+      const newArr =[...cartItems]
+      const newItem = cartItems[index];
+      newItem.quantity = e.target.value;
+      newArr[index]=newItem;
+      setCartItems(newArr);    
+  }
 
   useEffect(() => {
     console.log(cartItems);
@@ -50,7 +70,7 @@ const Shop = () => {
           );
         })}
       </div>
-      {cartBarVisible ? <Cart cartItems={cartItems} /> : null}
+      {cartBarVisible ? <Cart cartItems={cartItems} changeQuantity={handleQuantityChange}/> : null}
     </div>
   );
 };
