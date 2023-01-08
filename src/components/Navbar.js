@@ -21,8 +21,10 @@ const Navbar = () => {
             <NavLink to="contacts">Contacts</NavLink>
           </li>
           <li>
-            <img src={shoppingCartImage} alt="" id="shopping-cart-image" />
-            <div className="item-count"></div>
+            <div className="shopping-cart-open">
+              <div className="item-count">1</div>
+              <img src={shoppingCartImage} alt="" id="shopping-cart-image" />
+            </div>
           </li>
         </ul>
       </div>

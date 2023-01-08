@@ -41,8 +41,25 @@ li {
   border: 1px solid black;
 }
 
+.shopping-cart-open{
+  display: flex;
+  position:relative;
+  width: 35px;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+}
+
 #shopping-cart-image{
-  width: 30px;
-  position:absolute;
-  right: 10vw;
+  width: 100%;
+}
+
+.shopping-cart-open>.item-count{
+  position: absolute;
+  display: block;
+  z-index: 999;
+  margin-left: .3rem;
+  margin-bottom: .5rem;
+  font-weight: bold;
+  pointer-events: none;
 }
