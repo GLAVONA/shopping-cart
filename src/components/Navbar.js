@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/Navbar.css";
 import { NavLink } from "react-router-dom";
 import shoppingCartImage from "../imgs/carts.png";
+import Shop from "../Shop";
 
-const Navbar = () => {
+const Navbar = ({cartItemsLength,openCart}) => {
+
+
   return (
     <div className="navbar">
       <div className="navbar-items">
@@ -12,20 +15,24 @@ const Navbar = () => {
         </h1>
         <ul className="navmenu">
           <li>
-            <NavLink to="shop">Shop</NavLink>
+            <NavLink to="../shop">Shop</NavLink>
           </li>
           <li>
-            <NavLink to="about">About</NavLink>
+            <NavLink to="../about">About</NavLink>
           </li>
           <li>
-            <NavLink to="contacts">Contacts</NavLink>
+            <NavLink to="../contacts">Contacts</NavLink>
           </li>
-          <li>
-            <div className="shopping-cart-open">
-              <div className="item-count">1</div>
+          
+          {cartItemsLength!==undefined?
+            <li>
+            <div className="shopping-cart-open" onClick={openCart}>
+              <div className="item-count">{cartItemsLength}</div>
               <img src={shoppingCartImage} alt="" id="shopping-cart-image" />
             </div>
-          </li>
+          </li> :null
+          }
+          
         </ul>
       </div>
     </div>

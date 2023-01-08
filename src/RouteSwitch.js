@@ -9,7 +9,6 @@ import { useState } from "react";
 const RouteSwitch = () => {
   return (
     <BrowserRouter>
-      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="shop" element={<Shop />} />

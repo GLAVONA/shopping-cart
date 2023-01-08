@@ -3,6 +3,7 @@ import "./styles/shop.css";
 import Cart from "./components/Cart/Cart";
 import { json } from "react-router-dom";
 import ShoppingItem from "./components/ShoppingItem";
+import Navbar from "./components/Navbar";
 
 const Shop = () => {
   const [cartBarVisible, setCartBarVisible] = useState(false);
@@ -54,8 +55,12 @@ const Shop = () => {
     setCartBarVisible(false);
   };
 
+  const openCart = ()=>{
+    setCartBarVisible(true);
+  }
+
   useEffect(() => {
-    if (cartItems.length > 0) {
+    if (cartItems.length === 1) {
       setCartBarVisible(true);
     }
     if (cartItems.length < 1) {
@@ -79,10 +84,13 @@ const Shop = () => {
     getGifs();
   }, []);
   return (
+    <>
+    <Navbar cartItemsLength={cartItems.length || 0}openCart={openCart}/>
+
     <div className="shop">
       <div className="shopping">
         {trendingGifs.map((gif) => {
-          return <ShoppingItem obj={gif} onClick={addToCart} />;
+          return <ShoppingItem obj={gif} onClick={addToCart}/>;
         })}
       </div>
       {cartBarVisible ? (
@@ -94,7 +102,7 @@ const Shop = () => {
         />
       ) : null}
     </div>
-  );
+  </>);
 };
 
 export default Shop;
