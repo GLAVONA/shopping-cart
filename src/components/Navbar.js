@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/Navbar.css";
 import { NavLink } from "react-router-dom";
+import shoppingCartImage from "../imgs/carts.png";
 
 const Navbar = () => {
   return (
@@ -18,6 +19,10 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink to="contacts">Contacts</NavLink>
+          </li>
+          <li>
+            <img src={shoppingCartImage} alt="" id="shopping-cart-image" />
+            <div className="item-count"></div>
           </li>
         </ul>
       </div>

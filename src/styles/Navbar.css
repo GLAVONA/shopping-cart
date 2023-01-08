@@ -6,7 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 300px;
+  gap: 20vw;
 }
 
 h1 > a {
@@ -39,4 +39,10 @@ li {
 
 .navmenu > li > .active {
   border: 1px solid black;
+}
+
+#shopping-cart-image{
+  width: 30px;
+  position:absolute;
+  right: 10vw;
 }
