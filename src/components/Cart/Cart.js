@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import CartItem from "./CartItem";
 
-
-
-const Cart = () => {
-  return <div className="shopping-cart"></div>;
+const Cart = ({ cartItems }) => {
+  return <div className="shopping-cart">
+    {cartItems.map(item=>{
+      <CartItem id={item}/>
+    })}
+  </div>;
 };
 
 export default Cart;

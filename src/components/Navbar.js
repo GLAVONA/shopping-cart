@@ -7,7 +7,7 @@ const Navbar = () => {
     <div className="navbar">
       <div className="navbar-items">
         <h1>
-          <NavLink to="/">My NFT Shop</NavLink>
+          <NavLink to="/">NFT Shop</NavLink>
         </h1>
         <ul className="navmenu">
           <li>

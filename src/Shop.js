@@ -7,13 +7,19 @@ import ShoppingItem from "./components/ShoppingItem";
 const Shop = () => {
   const [cartBarVisible, setCartBarVisible] = useState(false);
   const [trendingGifs, setTrendingGifs] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
   const apiKey = "RNyGfTjzayaxSod2C541TnAJFKyajbSH";
   const limit = 20;
 
-  const getClickedId = (e) => {
-    console.log(e.target.id);
+  const addToCart = (e) => {
+    const newArr = [...cartItems, {id:e.target.id,title:e.target.title}];
+    setCartItems(newArr);
   };
+
+  useEffect(() => {
+    console.log(cartItems);
+  }, [cartItems]);
 
   useEffect(() => {
     const getGifs = async () => {
@@ -32,19 +38,19 @@ const Shop = () => {
   }, []);
   return (
     <div className="shop">
-      <button onClick={console.log(trendingGifs)}>PRINT</button>
       <div className="shopping">
         {trendingGifs.map((gif) => {
           return (
             <ShoppingItem
               src={gif.images.fixed_height.url}
               id={gif.id}
-              onClick={getClickedId}
+              title={gif.title}
+              onClick={addToCart}
             />
           );
         })}
       </div>
-      {cartBarVisible ? <Cart /> : null}
+      {cartBarVisible ? <Cart cartItems={cartItems} /> : null}
     </div>
   );
 };
