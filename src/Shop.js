@@ -14,6 +14,7 @@ const Shop = () => {
   const limit = 20;
 
   const addToCart = (e) => {
+    console.log(trendingGifs);
     if (cartItems.some((item) => item.id === e.target.id)) {
       const index = cartItems.findIndex((item) => item.id === e.target.id);
       const newArr = [...cartItems];
@@ -38,7 +39,7 @@ const Shop = () => {
   const removeFromCart = (e) => {
     const index = cartItems.findIndex((item) => item.id === e.target.id);
     const newArr = [...cartItems];
-    newArr.splice(index,1)
+    newArr.splice(index, 1);
     setCartItems(newArr);
   };
 
@@ -46,7 +47,13 @@ const Shop = () => {
     const index = cartItems.findIndex((item) => item.id === e.target.id);
     const newArr = [...cartItems];
     const newItem = cartItems[index];
-    newItem.quantity = e.target.value;
+    if (e.target.value < 1) {
+      newItem.quantity = 1;
+    } else if (e.target.value > 20) {
+      newItem.quantity = 20;
+    } else {
+      newItem.quantity = e.target.value;
+    }
     newArr[index] = newItem;
     setCartItems(newArr);
   };
@@ -55,9 +62,9 @@ const Shop = () => {
     setCartBarVisible(false);
   };
 
-  const openCart = ()=>{
+  const openCart = () => {
     setCartBarVisible(true);
-  }
+  };
 
   useEffect(() => {
     if (cartItems.length === 1) {
@@ -76,33 +83,37 @@ const Shop = () => {
           { mode: "cors" }
         );
         const json = await response.json();
-        setTrendingGifs(json.data);
+        await setTrendingGifs(json.data.map(gif=>{return {...gif, price:Math.round(Math.random() * 100) / 100}}));        
       } catch (error) {
         throw new Error(error);
       }
     };
     getGifs();
+
   }, []);
+
+
   return (
     <>
-    <Navbar cartItemsLength={cartItems.length || 0}openCart={openCart}/>
+      <Navbar cartItemsLength={cartItems.length || 0} openCart={openCart} />
 
-    <div className="shop">
-      <div className="shopping">
-        {trendingGifs.map((gif) => {
-          return <ShoppingItem obj={gif} onClick={addToCart}/>;
-        })}
+      <div className="shop">
+        <div className="shopping">
+          {trendingGifs.map((gif) => {
+            return <ShoppingItem obj={gif} onClick={addToCart} />;
+          })}
+        </div>
+        {cartBarVisible ? (
+          <Cart
+            cartItems={cartItems}
+            changeQuantity={handleQuantityChange}
+            closeCart={closeCart}
+            removeFromCart={removeFromCart}
+          />
+        ) : null}
       </div>
-      {cartBarVisible ? (
-        <Cart
-          cartItems={cartItems}
-          changeQuantity={handleQuantityChange}
-          closeCart={closeCart}
-          removeFromCart={removeFromCart}
-        />
-      ) : null}
-    </div>
-  </>);
+    </>
+  );
 };
 
 export default Shop;

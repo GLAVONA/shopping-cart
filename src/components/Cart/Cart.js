@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CartItem from "./CartItem";
 
-const Cart = ({ openCart,cartItems, changeQuantity, closeCart: toggleCart, removeFromCart }) => {
+const Cart = ({ cartItems, changeQuantity, closeCart: toggleCart, removeFromCart }) => {
   return (
     <div className="cart-div">
     <div className="empty-space" onClick={toggleCart}></div>
@@ -21,6 +21,7 @@ const Cart = ({ openCart,cartItems, changeQuantity, closeCart: toggleCart, remov
                 quantity={item.quantity}
                 changeQuantity={changeQuantity}
                 removeFromCart={removeFromCart}
+                price ={item.price}
               />
             );
           })}

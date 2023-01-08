@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import plusImage from "../imgs/add.png";
 
 const ShoppingItem = ({
+  obj:{price},
   obj: { id, title },
   obj: {
     images: {
@@ -15,7 +16,7 @@ const ShoppingItem = ({
   },
   onClick,
 }) => {
-  const attributes = { id: id, smallurl: url2, title: title };
+  const attributes = { id: id, smallurl: url2, title: title, price: price};
 
   const [showAddToCart, setShowAddToCard] = useState(false);
 
@@ -39,6 +40,7 @@ const ShoppingItem = ({
         onMouseEnter={() => setShowAddToCard(true)}
         onMouseLeave={() => setShowAddToCard(false)}
       />
+      <div className="item-price">{price} ETH</div>
     </div>
   );
 };
