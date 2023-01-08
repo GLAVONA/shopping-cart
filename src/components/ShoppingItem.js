@@ -15,7 +15,7 @@ const ShoppingItem = ({
   },
   onClick,
 }) => {
-  const attributes = { id: id, smallURL: url2, title: title };
+  const attributes = { id: id, smallurl: url2, title: title };
 
   const [showAddToCart, setShowAddToCard] = useState(false);
 

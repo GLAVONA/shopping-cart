@@ -47,10 +47,13 @@
 
 .shop-item{
   display: grid;
-  grid-template-columns: .3fr 1fr;
+  grid-template-columns: .3fr 1fr .1fr;
   gap: 1rem;
+  justify-content: center;
+  align-items: center;
 }
 
 .shop-item>img{
   width: 100%;
+  height: 60px;
 }

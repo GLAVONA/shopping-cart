@@ -5,7 +5,7 @@ import { json } from "react-router-dom";
 import ShoppingItem from "./components/ShoppingItem";
 
 const Shop = () => {
-  const [cartBarVisible, setCartBarVisible] = useState(true);
+  const [cartBarVisible, setCartBarVisible] = useState(false);
   const [trendingGifs, setTrendingGifs] = useState([]);
   const [cartItems, setCartItems] = useState([]);
 
@@ -13,34 +13,54 @@ const Shop = () => {
   const limit = 20;
 
   const addToCart = (e) => {
-    if(cartItems.some(item=>item.id===e.target.id))
-    {
-      const index = cartItems.findIndex(item=>item.id===e.target.id);
-      const newArr =[...cartItems]
+    if (cartItems.some((item) => item.id === e.target.id)) {
+      const index = cartItems.findIndex((item) => item.id === e.target.id);
+      const newArr = [...cartItems];
       const newItem = cartItems[index];
       newItem.quantity++;
-      newArr[index]=newItem;
+      newArr[index] = newItem;
+      setCartItems(newArr);
+    } else {
+      const newArr = [
+        ...cartItems,
+        {
+          id: e.target.id,
+          smallurl: e.target.getAttribute("smallurl"),
+          title: e.target.getAttribute("title"),
+          quantity: 1,
+        },
+      ];
       setCartItems(newArr);
     }
-    else{
-
-      const newArr = [...cartItems, {id:e.target.id,smallURL:e.target.getAttribute("smallURL"),title:e.target.getAttribute("title"), quantity:1}];
-      setCartItems(newArr);
-    }
-;
   };
 
-  const handleQuantityChange=(e)=>{
-    const index = cartItems.findIndex(item=>item.id===e.target.id);
-      const newArr =[...cartItems]
-      const newItem = cartItems[index];
-      newItem.quantity = e.target.value;
-      newArr[index]=newItem;
-      setCartItems(newArr);    
-  }
+  const removeFromCart = (e) => {
+    const index = cartItems.findIndex((item) => item.id === e.target.id);
+    const newArr = [...cartItems];
+    newArr.splice(index,1)
+    setCartItems(newArr);
+  };
+
+  const handleQuantityChange = (e) => {
+    const index = cartItems.findIndex((item) => item.id === e.target.id);
+    const newArr = [...cartItems];
+    const newItem = cartItems[index];
+    newItem.quantity = e.target.value;
+    newArr[index] = newItem;
+    setCartItems(newArr);
+  };
+
+  const closeCart = () => {
+    setCartBarVisible(false);
+  };
 
   useEffect(() => {
-    console.log(cartItems);
+    if (cartItems.length > 0) {
+      setCartBarVisible(true);
+    }
+    if (cartItems.length < 1) {
+      setCartBarVisible(false);
+    }
   }, [cartItems]);
 
   useEffect(() => {
@@ -62,15 +82,17 @@ const Shop = () => {
     <div className="shop">
       <div className="shopping">
         {trendingGifs.map((gif) => {
-          return (
-            <ShoppingItem
-            obj = {gif}
-              onClick={addToCart}
-            />
-          );
+          return <ShoppingItem obj={gif} onClick={addToCart} />;
         })}
       </div>
-      {cartBarVisible ? <Cart cartItems={cartItems} changeQuantity={handleQuantityChange}/> : null}
+      {cartBarVisible ? (
+        <Cart
+          cartItems={cartItems}
+          changeQuantity={handleQuantityChange}
+          closeCart={closeCart}
+          removeFromCart={removeFromCart}
+        />
+      ) : null}
     </div>
   );
 };
