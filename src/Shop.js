@@ -5,7 +5,7 @@ import { json } from "react-router-dom";
 import ShoppingItem from "./components/ShoppingItem";
 
 const Shop = () => {
-  const [cartBarVisible, setCartBarVisible] = useState(false);
+  const [cartBarVisible, setCartBarVisible] = useState(true);
   const [trendingGifs, setTrendingGifs] = useState([]);
   const [cartItems, setCartItems] = useState([]);
 
@@ -13,8 +13,10 @@ const Shop = () => {
   const limit = 20;
 
   const addToCart = (e) => {
-    const newArr = [...cartItems, {id:e.target.id,title:e.target.title}];
+    console.log(e.target.getAttribute("smallURL"))
+    const newArr = [...cartItems, {id:e.target.id,smallURL:e.target.getAttribute("smallURL"),title:e.target.getAttribute("title")}];
     setCartItems(newArr);
+    console.log(trendingGifs)
   };
 
   useEffect(() => {
@@ -42,9 +44,7 @@ const Shop = () => {
         {trendingGifs.map((gif) => {
           return (
             <ShoppingItem
-              src={gif.images.fixed_height.url}
-              id={gif.id}
-              title={gif.title}
+            obj = {gif}
               onClick={addToCart}
             />
           );

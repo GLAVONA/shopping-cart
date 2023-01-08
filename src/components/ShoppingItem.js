@@ -1,7 +1,22 @@
 import React, { useState } from "react";
 import plusImage from "../imgs/add.png";
 
-const ShoppingItem = ({ src, id, onClick, title }) => {
+const ShoppingItem = ({
+  obj: { id, title },
+  obj: {
+    images: {
+      fixed_height: { url },
+    },
+  },
+  obj: {
+    images: {
+      fixed_height_small_still: { url: url2 },
+    },
+  },
+  onClick,
+}) => {
+  const attributes = { id: id, smallURL: url2, title: title };
+
   const [showAddToCart, setShowAddToCard] = useState(false);
 
   return (
@@ -9,20 +24,18 @@ const ShoppingItem = ({ src, id, onClick, title }) => {
       {showAddToCart ? (
         <div
           className="add-to-cart"
-          id={id}
           onMouseEnter={() => setShowAddToCard(true)}
           onMouseLeave={() => setShowAddToCard(false)}
           onClick={onClick}
-          title={title}
+          {...attributes}
         >
-          <img src={plusImage} alt="" id={id} onClick={onClick} title={title} />
+          <img src={plusImage} alt="" onClick={onClick} {...attributes} />
         </div>
       ) : null}
 
       <img
-        src={src}
+        src={url}
         alt=""
-        id={id}
         onMouseEnter={() => setShowAddToCard(true)}
         onMouseLeave={() => setShowAddToCard(false)}
       />
