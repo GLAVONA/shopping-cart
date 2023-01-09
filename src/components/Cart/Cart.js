@@ -18,7 +18,7 @@ const Cart = ({
             X
           </button>
         </div>
-        <div className="cart-items">
+        <div className="cart-items-div">
           {cartItems.map((item) => {
             total += item.quantity * item.price;
             return (
