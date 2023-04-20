@@ -30,7 +30,7 @@ const Shop = () => {
           smallurl: e.target.getAttribute("smallurl"),
           title: e.target.getAttribute("title"),
           quantity: 1,
-          price:e.target.getAttribute("price")
+          price: e.target.getAttribute("price"),
         },
       ];
       setCartItems(newArr);
@@ -84,15 +84,17 @@ const Shop = () => {
           { mode: "cors" }
         );
         const json = await response.json();
-        await setTrendingGifs(json.data.map(gif=>{return {...gif, price:Math.round(Math.random() * 100) / 100}}));        
+        await setTrendingGifs(
+          json.data.map((gif) => {
+            return { ...gif, price: Math.round(Math.random() * 100) / 100 };
+          })
+        );
       } catch (error) {
         throw new Error(error);
       }
     };
     getGifs();
-
   }, []);
-
 
   return (
     <>
